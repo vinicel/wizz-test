@@ -58,7 +58,7 @@ app.post('/api/games/search', (req, res) => {
     return db.Game.findAll();
   }
 
-  return db.game.findAll({
+  return db.Game.findAll({
     where: {
       name: {
         [Op.like]: `%${name}%`,
