@@ -66,6 +66,10 @@ Please elaborate an action plan.
 #### Anwser 1:
 First, we should better manage the database connection by using environment variables for security. Then, I would set up a GitHub Actions pipeline to ensure the code is properly formatted in case it’s forgotten, and also to automatically run tests on every PR to prevent merging code that breaks the tests.
 
+After quite a few modifications, I would convert the code to TypeScript and add return types to properly manage the code and avoid problems, and I would also separate the business logic.
+
+
+
 #### Question 2:
 Let's pretend our data team is now delivering new files every day into the S3 bucket, and our service needs to ingest those files
 every day through the populate API. Could you describe a suitable solution to automate this? Feel free to propose architectural changes.
