@@ -80,7 +80,7 @@ app.post('/api/games/search', (req, res) => {
 
 app.get('/api/games/populate', (req, res) => {
   const insertGameOnDB = async (games) => {
-    games.map((game) => db.Game.create({
+    await Promise.all(games.map((game) => db.Game.create({
       publisherId: game.publisher_id,
       name: game.name,
       platform: game.os,
@@ -88,7 +88,7 @@ app.get('/api/games/populate', (req, res) => {
       bundleId: game.bundle_id,
       appVersion: game.version,
       isPublished: !!game.publisher_id,
-    }));
+    })));
   };
 
   const fetchGamesFromS3 = async (url) => {

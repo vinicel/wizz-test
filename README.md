@@ -63,8 +63,15 @@ Many other applications at Voodoo will use consume this API.
 We are planning to put this project in production. According to you, what are the missing pieces to make this project production ready? 
 Please elaborate an action plan.
 
+#### Anwser 1:
+First, we should better manage the database connection by using environment variables for security. Then, I would set up a GitHub Actions pipeline to ensure the code is properly formatted in case it’s forgotten, and also to automatically run tests on every PR to prevent merging code that breaks the tests.
+
 #### Question 2:
 Let's pretend our data team is now delivering new files every day into the S3 bucket, and our service needs to ingest those files
 every day through the populate API. Could you describe a suitable solution to automate this? Feel free to propose architectural changes.
 
+#### Anwser 2:
+We can already consider enabling notifications when a new file is uploaded to S3, using an AWS SNS topic or SQS to process the request in a queue that triggers an action on our backend. As a second option, I would also suggest the possibility of adding a cron job that runs once a day or every two days to process newly uploaded files on S3.
 
+First, I would separate the filling logic and move it to a dedicated file, because we are going to handle it differently from what we do via our API, either with SNS or SQS!
+I would also move all the logic for database operations (insertions, gets...) methods by using the Repository Pattern.
